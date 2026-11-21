@@ -22,6 +22,7 @@ REQUIRED_FILES = [
     "references/tencent-cloud-choice.md",
     "references/development-stage.md",
     "references/release-stage.md",
+    "references/operations-and-revenue.md",
     "references/version-update.md",
     "references/state-persistence.md",
     "references/acceptance-tests.md",
