@@ -1,0 +1,20 @@
+{
+  "status": "regression",
+  "baseline": "baseline.png",
+  "actual": "actual.png",
+  "diff": "difference.png",
+  "dimensions": {
+    "width": 960,
+    "height": 540
+  },
+  "threshold": 0,
+  "includeAntiAlias": false,
+  "maskedPixels": 0,
+  "comparedPixels": 518400,
+  "diffPixels": 1069,
+  "diffRatio": 0.0020621141975308644,
+  "allowed": {
+    "maxDiffPixels": 0,
+    "maxDiffRatio": 0
+  }
+}

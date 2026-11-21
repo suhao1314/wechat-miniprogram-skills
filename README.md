@@ -1,12 +1,29 @@
-# 微信小程序开发与页面验收 Skills
+# 微信小程序开发与验收 Skills
 
-把「我想做个小程序」变成可以在手机上试的项目。AI 会追问影响首版的需求，拿同一页的三种排法给你看，解释哪种操作更省事，再带你走开发、体验版和提审准备。
+**最后一个名额，两个人同时点报名。你的第一个小程序，扛得住这一点吗？**
 
-## 同一批自习室，三种找法
+这套 Skill 带新手从一句想法走到微信体验版，也教 AI 专挑那些「看上去已经做好」的地方去试。报名页画好了，还要试半路断网、换号串草稿、重复点提交。按钮改了位置，还能用前后两张截图找出改动落在哪儿。
 
-![按时段、楼栋、余位排列同一组自习室的三张手机页面](docs/ui-preview.png)
+[**打开「夜航」互动演示**](https://suhao1314.github.io/wechat-miniprogram-skills/) · [用你自己的两张截图找差异](https://suhao1314.github.io/wechat-miniprogram-skills/compare.html) · [查看像素差异原图](docs/evidence/difference.png) · [下载项目](https://github.com/suhao1314/wechat-miniprogram-skills/archive/refs/heads/main.zip)
 
-知道几点有空，先看时段。刚下课想就近找座，先看楼栋。时间地点都灵活，先看余位。三版用同一批虚构记录，可以直接对照设计取舍。[离线样张 HTML](skills/launch-wechat-miniprogram/assets/mobile-directions.html) 可随仓库下载，在本地浏览器中打开。
+[![夜航预约验收台，可切换两个演示账号、模拟断网和争抢末席](docs/night-observatory.png)](https://suhao1314.github.io/wechat-miniprogram-skills/)
+
+### 给它一分钟，试着把报名弄坏
+
+| 你来操作 | 看哪里 |
+| --- | --- |
+| 写句备注，保存草稿，刷新，再切到另一位同学 | 原账号能找回文字，另一个账号看到自己的草稿。 |
+| 打开「下次提交模拟断网」，点预约，再重试 | 第一次失败时名额还在，重试后才占位。 |
+| 重置，点「两个账号同时提交」 | 看谁拿到最后一席，以及另一个人收到什么反馈。 |
+| 打开「截图对比」，来回切换原图和差异图 | 看哪处控件移动了，以及 Pixelmatch 实际数到了多少个变化像素。 |
+
+演示在你的浏览器里用虚构数据运行。微信真机、云端并发和正式提审分别验收。下载仓库后也可以双击 `docs/index.html` 离线体验。
+
+### 把同样的方法带回自己的项目
+
+- **需求说不清也能开工准备。** 比如「我想做活动报名」，可以先让 AI 问清谁能报名、满员后怎么处理、哪些资料值得收。决定会改变页面和成本的事，由你拍板。
+- **让 AI 拿设计给你选。** 同样一批自习室，按时段、楼栋、余位排序，分别方便三类同学。用这组样张评审信息顺序，再把方法用到自己的页面。[三种手机页面](docs/ui-preview.png)
+- **让验收结论有凭据。** 在支持的开发者工具环境中拍页面，留下基准图、新图和差异图。业务回归再检查实际点击、失败恢复和权限。两类结果都能交给下一个人复核。[视觉回归说明](skills/launch-wechat-miniprogram/references/visual-regression.md) · [业务回归说明](skills/launch-wechat-miniprogram/references/business-regression.md)
 
 ## 从这里开始
 
@@ -84,4 +101,4 @@ python -m unittest discover -s tests -v
 
 本项目基于 niuhuoshan 的 [launch-wechat-miniprogram](https://github.com/niuhuoshan/launch-wechat-miniprogram) 扩展。本版加入任务驱动的 UI 评审、业务回归场景和模拟器截图对比。页面构思借鉴花叔的 [Huashu Design](https://github.com/alchaincyf/huashu-design)，用微信小程序场景重新编写，使用时无需另外安装。设计方向示例用于启发讨论，不应被误认为微信官方规范或固定模板。
 
-本仓库按 [MIT License](LICENSE) 发布。引用的第三方组件、文档和素材仍适用其各自的许可证或授权要求。
+本版新增的原创内容以 **PolyForm Noncommercial 1.0.0** 公开源码，可按条款学习、复刻和分享。使用这些内容接商业外包、做付费产品或服务，请先取得单独商用授权。历史 MIT 版本、上游代码和第三方依赖保留各自授权。[许可范围与商用联系](LICENSING.md) · [许可证全文](LICENSE)

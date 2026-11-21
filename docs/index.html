@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="亲手验证微信小程序预约里的草稿恢复、断网重试和最后一席保护。">
+  <title>夜航 · 小程序预约验收台</title>
+  <link rel="stylesheet" href="showcase.css">
+  <script src="evidence/metrics.js" defer></script>
+  <script src="showcase.js" defer></script>
+</head>
+<body>
+  <header class="masthead frame">
+    <a href="#workbench" class="brand"><span aria-hidden="true" class="brand-icon"></span> 小程序验收台</a>
+    <nav aria-label="页面导航">
+      <a href="#visual-evidence">截图对比</a>
+      <a href="https://github.com/suhao1314/wechat-miniprogram-skills">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main class="frame" id="workbench">
+    <div class="workbench">
+      <section class="setup" aria-labelledby="workbench-title">
+        <h1 id="workbench-title">夜航<span class="title-dot">.</span><small>校园天文观测</small></h1>
+        <p class="intro">只剩最后一个观测席位。临时断网、切换账号、两人同时报名，你可以在这台预约小程序里亲手试一遍。</p>
+        <fieldset>
+          <legend>切换演示账号</legend>
+          <div class="account-switch">
+            <button type="button" data-role="lin" aria-pressed="true"><span class="avatar">林</span> 林同学</button>
+            <button type="button" data-role="qiao" aria-pressed="false"><span class="avatar">乔</span> 乔同学</button>
+          </div>
+        </fieldset>
+        <div class="scenario">
+          <h2>试试容易出错的操作</h2>
+          <button type="button" id="arm-offline" aria-pressed="false"><span class="toggle" aria-hidden="true"></span><span id="network-toggle-label">下次提交模拟断网</span></button>
+          <button type="button" id="race-booking"><span class="race-icon" aria-hidden="true">⇄</span> 两个账号同时提交</button>
+          <p>也可以先保存备注，刷新页面，再切到另一个账号看看。</p>
+        </div>
+        <button type="button" id="reset-demo" class="quiet-button">重置演示</button>
+        <p class="local-note">本机模拟 · 请勿填写个人信息</p>
+        <nav class="mobile-jumps" aria-label="小屏验收导航"><a href="#booking-stage">去预约 ↓</a><a href="#observer-title">看验收记录 ↓</a></nav>
+      </section>
+
+      <section class="stage" id="booking-stage" tabindex="-1" aria-label="预约小程序演示">
+        <div class="orbit-map" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="phone">
+          <div class="phone-chrome" aria-hidden="true"><span>20:30</span><span class="phone-signal">▮▮▮ <span class="battery"></span></span></div>
+          <div class="phone-nav"><span></span><strong>活动报名</strong><span aria-hidden="true" class="phone-menu">••• <i></i> ◉</span></div>
+          <article class="phone-page">
+            <div class="sky">
+              <div class="planet" aria-hidden="true"></div>
+              <div class="sky-title"><span>观 星 夜</span><h2>夜航</h2></div>
+            </div>
+            <div class="phone-content">
+              <div class="activity-heading"><h3>校园天文观测</h3><span id="phone-capacity">余 1 席</span></div>
+              <p class="activity-detail"><span aria-hidden="true">◷</span> 周五 20:30–21:30</p>
+              <p class="activity-detail"><span aria-hidden="true">⌖</span> 校园北区观测台</p>
+              <form id="booking-form">
+                <label for="booking-note">报名备注 <span>选填</span></label>
+                <textarea id="booking-note" rows="2" maxlength="120" placeholder="例如：想了解怎样用望远镜找土星"></textarea>
+                <div class="draft-line"><span id="draft-state" aria-live="polite"></span><button type="button" id="save-draft">保存草稿</button></div>
+                <button type="submit" id="submit-booking">预约最后一席</button>
+                <p id="booking-status" role="status"></p>
+              </form>
+            </div>
+          </article>
+          <div class="phone-home" aria-hidden="true"><span></span></div>
+        </div>
+        <nav class="mobile-jumps" aria-label="查看预约结果"><a href="#observer-title">看验收记录 ↓</a><a href="#workbench-title">回到演示设置 ↑</a></nav>
+      </section>
+
+      <section class="observer" aria-labelledby="observer-title">
+        <h2 id="observer-title" tabindex="-1">验收记录</h2>
+        <dl class="snapshot">
+          <div><dt>剩余席位</dt><dd id="seats-count">1</dd></div>
+          <div><dt>席位归属</dt><dd id="seat-owner">暂无</dd></div>
+          <div><dt>当前账号</dt><dd id="active-account">林同学</dd></div>
+        </dl>
+        <div class="journal">
+          <h3>操作记录</h3>
+          <p id="empty-log">保存草稿或提交一次报名，这里会记录实际结果。</p>
+          <ol id="event-log" aria-label="最新操作在前" aria-live="polite" aria-relevant="additions"></ol>
+        </div>
+        <nav class="mobile-jumps" aria-label="返回演示操作"><a href="#workbench-title">切换账号 ↑</a><a href="#booking-stage">回到预约 ↑</a></nav>
+      </section>
+    </div>
+
+    <section class="evidence" id="visual-evidence" aria-labelledby="evidence-title">
+      <div class="evidence-head">
+        <div><h2 id="evidence-title">把页面差异圈出来</h2><p>给预约栏样例加入显示故障，对比固定片段的两张截图，定位变动像素。</p></div>
+        <div class="evidence-actions" aria-label="选择截图视图">
+          <button type="button" data-evidence="baseline" aria-pressed="false">基准图</button>
+          <button type="button" data-evidence="actual" aria-pressed="false">实测图</button>
+          <button type="button" data-evidence="difference" aria-pressed="false">差异图</button>
+          <button type="button" data-evidence="all" aria-pressed="true">并排</button>
+        </div>
+      </div>
+      <p id="evidence-summary" role="status"></p>
+      <div class="evidence-grid" id="evidence-grid">
+        <figure data-image="baseline"><figcaption>基准图</figcaption><img src="evidence/baseline.png" alt="用于验收对照的基准页面截图" loading="lazy"></figure>
+        <figure data-image="actual"><figcaption>实测图</figcaption><img src="evidence/actual.png" alt="同一报名页面变化后的截图" loading="lazy"></figure>
+        <figure data-image="difference"><figcaption>差异图</figcaption><img src="evidence/difference.png" alt="高亮呈现基准图与实测图之间的像素差异" loading="lazy"></figure>
+      </div>
+      <div class="evidence-links">
+        <a class="report-link" href="evidence/report.json">查看像素对比报告 <span aria-hidden="true">↗</span></a>
+        <a class="compare-link" href="compare.html">用自己的两张截图找差异 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="frame footer">夜航 · 校园天文观测 <span><a href="https://github.com/suhao1314/wechat-miniprogram-skills/blob/main/LICENSING.md">非商用使用许可</a></span></footer>
+</body>
+</html>

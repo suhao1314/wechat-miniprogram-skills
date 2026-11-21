@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>两张截图，哪里变了？ · 小程序验收台</title>
+<link rel="stylesheet" href="showcase.css">
+<style>
+main.compare{max-width:880px;margin:clamp(28px,6vw,80px) auto;padding:0 20px}
+.compare h1{font-size:clamp(30px,5vw,56px);line-height:1.2;margin:0 0 18px}
+.compare p,.compare small{color:var(--muted)}
+.inputs{margin:28px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:16px}
+.inputs label{padding:18px;border:1px solid var(--edge);background:var(--panel);border-radius:10px;font-weight:650}
+.inputs input{display:block;width:100%;margin-top:14px;color:var(--muted)}
+.inputs input::file-selector-button,.compare button{background:var(--amber);color:var(--night);border:0;border-radius:5px;padding:9px 14px;font-weight:650;cursor:pointer}
+.compare canvas{max-width:100%;height:auto;display:block;margin:16px 0}
+.compare a{text-underline-offset:4px;color:var(--amber)}
+</style>
+<script src="vendor/pixelmatch/pixelmatch.js" defer></script><script src="compare.js" defer></script>
+</head>
+<body><header class="masthead frame"><a href="index.html" class="brand"><span aria-hidden="true" class="brand-icon"></span> 小程序验收台</a></header>
+<main class="compare"><h1>两张截图，哪里变了？</h1>
+<p>选一张改版前、一张改版后的同尺寸 PNG。图片留在浏览器里，红色标出变化位置。</p>
+<div class="inputs"><label>改版前<input id="before" type="file" accept="image/png"></label><label>改版后<input id="after" type="file" accept="image/png"></label></div>
+<button id="compare" type="button" disabled>对比截图</button>
+<p id="result" role="status">等待选择两张截图。</p>
+<canvas id="diff" hidden aria-label="截图差异，红色表示变动像素"></canvas>
+<a id="download" download="screenshot-difference.png" hidden>下载差异图</a>
+<p><small>支持每张 12 MB、800 万像素以内的 PNG。与夜航样例使用同一设置，阈值为 0，忽略抗锯齿像素。</small></p></main></body></html>

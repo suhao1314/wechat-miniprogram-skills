@@ -137,4 +137,4 @@ python scripts/validate_miniprogram_artifacts.py <project-root>
 
 ## 许可证
 
-本项目采用 [MIT License](LICENSE)。第三方文档、组件库、案例和用户提供的品牌素材仍受其各自许可证或授权约束。
+本目录保留 niuhuoshan 的[上游 MIT 声明](LICENSE)。本版新增的原创内容适用 PolyForm Noncommercial 1.0.0，第三方组件和素材各按其授权使用。[本版许可说明](LICENSE-NOTICE.md)
