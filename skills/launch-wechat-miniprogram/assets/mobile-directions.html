@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>自习室预约 · 三种找法</title>
+  <style>
+    :root {
+      font: 16px/1.5 system-ui, "Microsoft YaHei", sans-serif;
+      color: #172d29;
+      background: #f3f4ef;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0 auto; max-width: 1300px; padding: 32px 18px 48px; }
+    h1 { margin: 0; font-size: clamp(26px, 4vw, 38px); }
+    h2, h3, p { margin: 0; }
+    header p, .direction > p { color: #455853; }
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 315px), 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+    .direction { min-width: 0; }
+    .direction > p { margin: 4px 0 12px; min-height: 3em; }
+    .screen {
+      max-width: 390px;
+      margin: auto;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #cdd7d1;
+      border-radius: 20px;
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+    .nav { position: relative; padding: 18px 85px 14px; text-align: center; }
+    .capsule {
+      position: absolute; right: 12px; top: 14px; padding: 2px 8px;
+      border: 1px solid #cdd7d1; border-radius: 30px;
+      font-size: 14px; color: #25332f;
+    }
+    .summary { padding: 8px 16px 14px; color: #53665e; font-size: 14px; }
+    .group { padding: 0 16px; margin-bottom: 18px; }
+    h3 { font-size: 16px; border-bottom: 2px solid #326250; padding: 0 0 5px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 0; }
+    .row + .row { border-top: 1px solid #e2e8e2; }
+    .value { white-space: nowrap; color: #155a43; font-weight: 650; }
+    [data-seats="0"] .value { color: #616663; }
+    .by-building .entries { display: flex; flex-wrap: wrap; gap: 5px; padding-top: 7px; }
+    .by-building .row {
+      display: grid; gap: 2px; border: 0; padding: 5px 8px;
+      background: #eef4ef; font-size: 14px;
+    }
+    .by-capacity .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+    .meter { grid-column: 1 / -1; height: 3px; background: #e4ece5; }
+    .meter i { display: block; height: 100%; background: #397459; }
+    @media (max-width: 600px) {
+      body { padding: 20px 12px; }
+      .direction > p { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header><h1>同一批自习室，三种找法</h1><p>虚构的周三开放数据。比较时，试着找一间下午两点还有座位的教室。</p></header>
+  <main class="compare" id="directions"></main>
+  <noscript>请在支持 JavaScript 的浏览器中打开这份离线样张。</noscript>
+  <script>
+    const slots = [
+      ["图书馆", 8, 6], ["图书馆", 10, 0], ["图书馆", 14, 1],
+      ["明德楼", 8, 2], ["明德楼", 10, 5], ["明德楼", 19, 3],
+      ["知行楼", 8, 4], ["知行楼", 14, 7],
+      ["求是楼", 8, 0], ["求是楼", 10, 2], ["求是楼", 14, 0], ["求是楼", 19, 1]
+    ].map(([building, start, seats]) => ({ building, start, seats }));
+
+    function time(slot) {
+      return String(slot.start).padStart(2, "0") + ":00–" + String(slot.start + 2).padStart(2, "0") + ":00";
+    }
+
+    const directions = [
+      {
+        key: "by-time", title: "先找时段",
+        reason: "已经知道几点有空时，我推荐这版。同一时段各楼余位紧挨着，跨时段比较同一栋楼要多找一次。",
+        order: (a, b) => a.start - b.start, group: time, label: slot => slot.building
+      },
+      {
+        key: "by-building", title: "先找楼栋",
+        reason: "刚下课、想留在附近时，我推荐这版。同一栋楼全天可约时间一眼能看全。",
+        group: slot => slot.building, label: time
+      },
+      {
+        key: "by-capacity", title: "先看余位",
+        reason: "时间地点都灵活时，这版把余位充足的场次放在前面。找指定时段要逐行读。",
+        order: (a, b) => b.seats - a.seats, group: slot => slot.seats ? "可预约" : "已满",
+        label: slot => slot.building + " · " + time(slot)
+      }
+    ];
+
+    function element(tag, className, content) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (content !== undefined) node.textContent = content;
+      return node;
+    }
+
+    function displayDirection(direction) {
+      const article = element("article", "direction " + direction.key);
+      article.append(element("h2", "", direction.title), element("p", "", direction.reason));
+      const screen = element("div", "screen");
+      const nav = element("div", "nav", "自习室预约");
+      const capsule = element("span", "capsule", "••• │ ◉");
+      capsule.setAttribute("aria-hidden", "true");
+      nav.append(capsule);
+      screen.append(nav, element("p", "summary", "桂园校区 · 周三"));
+      const groups = new Map();
+      const ordered = direction.order ? [...slots].sort(direction.order) : slots;
+      const maxSeats = Math.max(...slots.map(slot => slot.seats));
+      for (const slot of ordered) {
+        const name = direction.group(slot);
+        if (!groups.has(name)) {
+          const section = element("section", "group");
+          const entries = element("div", "entries");
+          section.append(element("h3", "", name), entries);
+          groups.set(name, entries);
+          screen.append(section);
+        }
+        const row = element("div", "row");
+        Object.assign(row.dataset, slot);
+        row.append(element("span", "", direction.label(slot)),
+          element("span", "value", slot.seats ? "余 " + slot.seats + " 位" : "已满"));
+        if (direction.key === "by-capacity" && slot.seats > 0) {
+          const meter = element("span", "meter");
+          meter.setAttribute("aria-hidden", "true");
+          const fill = element("i");
+          fill.style.width = (slot.seats / maxSeats * 100) + "%";
+          meter.append(fill);
+          row.append(meter);
+        }
+        groups.get(name).append(row);
+      }
+      article.append(screen);
+      return article;
+    }
+
+    document.getElementById("directions").append(...directions.map(displayDirection));
+  </script>
+</body>
+</html>

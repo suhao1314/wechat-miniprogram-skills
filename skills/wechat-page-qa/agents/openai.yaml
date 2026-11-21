@@ -1,0 +1,6 @@
+interface:
+  display_name: "微信小程序页面验收"
+  short_description: "经同意后连接真实开发者工具，核对页面编译、路由、交互和截图，不自动发布"
+  default_prompt: "经我同意，使用 $wechat-page-qa 验证当前小程序页面，报告真实截图、控件变化和未通过项。"
+policy:
+  allow_implicit_invocation: false
