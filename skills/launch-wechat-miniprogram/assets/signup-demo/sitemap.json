@@ -1,0 +1,4 @@
+{
+  "desc": "本地报名样板，不开放搜索收录",
+  "rules": [{ "action": "disallow", "page": "*" }]
+}

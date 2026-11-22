@@ -1,0 +1,25 @@
+<view class="casebook">
+  <view class="tabs"><button wx:for="{{cases}}" wx:key="key" class="{{current.key === item.key ? 'active' : ''}}" data-key="{{item.key}}" bindtap="switchView">{{item.title}}</button></view>
+  <view class="title">{{current.question}}</view>
+  <view class="modes"><button data-mode="good" class="{{good ? 'selected' : ''}}" bindtap="switchView">推荐做法</button><button data-mode="bad" class="{{!good ? 'selected' : ''}}" bindtap="switchView">容易踩坑</button></view>
+  <view class="paper">
+    <block wx:if="{{current.key === 'policy'}}">
+      <view class="heading">我的活动</view><view class="row">读书会报名<text>已报名</text></view>
+      <view wx:if="{{good || policyMenu}}" class="links"><button bindtap="openPolicy" data-title="用户协议">用户协议</button><button bindtap="openPolicy" data-title="隐私政策">隐私政策</button></view>
+      <button wx:else class="menu" bindtap="openPolicies">政策与服务说明　›</button>
+    </block>
+    <block wx:elif="{{current.key === 'form'}}">
+      <view class="heading">参加读书会</view>
+      <label>称呼<input data-field="nickname" bindinput="typeField" value="{{nickname}}" placeholder="你希望大家怎么称呼你" /></label><view wx:if="{{error === '称呼'}}" class="error">请填写称呼。</view>
+      <label>参加人数<input data-field="count" bindinput="typeField" type="number" value="{{count}}" placeholder="例如 2" /></label><view wx:if="{{error === '人数'}}" class="error">请填写至少 1 人的整数。</view>
+      <button class="primary" bindtap="submitForm">提交报名</button><view wx:if="{{feedback}}">{{feedback}}</view>
+    </block>
+    <block wx:else>
+      <view wx:if="{{detail}}"><view class="heading">{{detail}}</view><button class="primary" bindtap="backToRooms">返回列表</button></view>
+      <block wx:else><view class="heading">可用自习桌</view><scroll-view class="scroll" scroll-y scroll-top="{{scrollTop}}" bindscroll="rememberScroll">
+        <button wx:for="{{rooms}}" wx:key="id" class="room" data-title="{{item.title}}" bindtap="openRoom">{{item.title}}　›</button>
+      </scroll-view></block>
+    </block>
+  </view>
+  <view class="explain">{{current.note}}</view>
+</view>

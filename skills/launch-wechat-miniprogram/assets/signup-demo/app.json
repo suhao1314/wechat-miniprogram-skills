@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/signup/index",
+    "pages/ui-cases/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "报名样板",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f7fb"
+  },
+  "sitemapLocation": "sitemap.json"
+}

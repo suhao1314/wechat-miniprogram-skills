@@ -13,6 +13,20 @@ $launch-wechat-miniprogram
 
 [**从一句话开始用**](#从这里开始) · [**打开可操作的验收演示**](https://suhao1314.github.io/wechat-miniprogram-skills/) · [**拿两张截图找页面问题**](https://suhao1314.github.io/wechat-miniprogram-skills/compare.html) · [下载 ZIP](https://github.com/suhao1314/wechat-miniprogram-skills/archive/refs/heads/main.zip)
 
+## 先把一个小程序跑在微信里
+
+**不用先买云服务。下载仓库，把报名样板文件夹导入微信开发者工具，就能看见代码怎样处理一次失败。** 打开时选自己的测试号或有权限的 AppID。界面和测试共用同一份报名逻辑。
+
+| 你可以当场试 | 仓库里可以带走什么 |
+| --- | --- |
+| 备注写到一半退出，重新打开；故意让第一次提交失败，再连续点两次报名 | 可导入的 WXML/WXSS 工程、自动恢复草稿、按身份隔离、一键运行的本地回归和可重复的微信模拟器验收。[导入原生报名样板](skills/launch-wechat-miniprogram/assets/signup-demo/README.md) |
+| 在同一个微信页面切换推荐做法与反例，看哪一种让人少点一步、少重填一个字段 | 协议入口、长表单报错、列表返回三组可操作案例。[打开实验说明](skills/launch-wechat-miniprogram/references/native-field-guide.md) |
+| 同一套问答换一个客户，学生、导师、审核员的权限怎样跟着换？ | 一份业务模块、两种宿主、两份隔离数据。用本地命令验证谁能看到待审内容、谁能回答。[复用问答模块](skills/launch-wechat-miniprogram/assets/qa-module/README.md) |
+
+<table><tr><td><img src="docs/native-proof/signup-failure.jpg" width="215" alt="微信模拟器内，失败后备注保留且仍为零人报名"></td><td><img src="docs/native-proof/signup-duplicate.jpg" width="215" alt="重复提交后显示已报名，记录仍为一人"></td><td><img src="docs/native-proof/ui-cases.jpg" width="215" alt="微信原生页面里可以切换交互正反例"></td></tr><tr><td>第一次提交失败 · 0 人</td><td>重试并重复提交 · 1 人</td><td>原生 UI 正反例</td></tr></table>
+
+这些截图来自微信开发者工具。报名样板使用虚构身份及设备本地存储，跨手机抢名额需要共享后端另测。维护者还可以查看[本次新旧版对照评测](skills/launch-wechat-miniprogram/references/skill-comparison.md)。
+
 ## 从开工到上线后，你能拿到什么
 
 | 你可能卡住的地方 | Skill 会和你一起产出什么 |

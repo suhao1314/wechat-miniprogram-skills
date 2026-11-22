@@ -1,0 +1,16 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "signup-demo-local",
+  "appid": "touristappid",
+  "setting": {
+    "es6": true,
+    "minified": false,
+    "urlCheck": true
+  },
+  "packOptions": {
+    "ignore": [
+      { "type": "folder", "value": "tests" },
+      { "type": "file", "value": "README.md" }
+    ]
+  }
+}

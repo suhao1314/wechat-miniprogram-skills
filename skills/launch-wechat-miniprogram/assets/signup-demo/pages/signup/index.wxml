@@ -1,0 +1,8 @@
+<view class="page">
+  <view class="hero"><text class="eyebrow">LOCAL DEMO · 无云环境</text><text class="title">校园观星报名</text><text class="intro">本页的草稿、失败和报名记录只保存在当前设备。</text></view>
+  <view class="card"><view class="row"><text>周五 20:30 · 北区观测台</text><text class="seat">不限人数</text></view><text class="muted">两位虚构同学用同一场活动测试。</text></view>
+  <view class="card"><text class="label">切换演示身份</text><view class="switcher"><button class="user {{activeUser === 'lin' ? 'selected' : ''}}" data-user="lin" bindtap="chooseUser" data-testid="user-lin">林同学</button><button class="user {{activeUser === 'qiao' ? 'selected' : ''}}" data-user="qiao" bindtap="chooseUser" data-testid="user-qiao">乔同学</button></view></view>
+  <view class="card"><view class="label-row"><text class="label">报名备注</text><text class="optional">选填，120 字以内</text></view><textarea value="{{note}}" bindinput="updateNote" maxlength="120" placeholder="例如：想学习怎样找木星" data-testid="note"/><view class="actions"><button class="plain" bindtap="saveDraft" data-testid="save-draft">保存草稿</button><button class="plain" bindtap="simulateFailure" data-testid="simulate-failure">模拟一次失败</button></view><button class="primary" bindtap="submit" data-testid="submit">{{submitted ? '再次提交会安全返回' : '确认报名'}}</button><text class="status {{statusTone}}" data-testid="status">{{status}}</text></view>
+  <view class="card summary"><text>本地报名记录</text><text class="count" data-testid="booking-count">{{bookingCount}} 人</text></view>
+  <button class="link" bindtap="openUiCases" data-testid="ui-cases">查看交互正反例</button><button class="link danger" bindtap="reset" data-testid="reset">清空本地演示数据</button>
+</view>

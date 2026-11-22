@@ -41,3 +41,5 @@
 ```
 
 把选择、原因、规模假设、费用风险和用户确认写入 `docs/miniapp/decisions.md`。创建后建议设置费用提醒，定期看用量、日志和备份。
+
+遇到「已开通，看不到环境」时，先区分账号名下没有环境、项目关联不对、角色缺权限、开发者工具显示异常。让用户核对当前工程、AppID 对应主体、被授权的开发者身份及目标环境的关联状态。只记录必要状态；经授权先做只读验证，再告诉用户要在哪个账号或配置上修改。仅凭下拉列表为空不新建收费资源。[腾讯小程序开发 Skill](https://github.com/TencentCloudBase/skills/blob/main/skills/miniprogram-development/SKILL.md)

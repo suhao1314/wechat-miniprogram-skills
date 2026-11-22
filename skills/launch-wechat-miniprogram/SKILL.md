@@ -11,6 +11,8 @@ description: 面向完全新手的微信小程序从想法到上线全流程引�
 
 用户已有上线版本，只问如何找到首批用户、改善使用率或尝试收费时，直接读[运营与收入验证](references/operations-and-revenue.md)。询问权限风险、线上异常或恢复时，直接读[发布与安全交接](references/release-stage.md)，结合当前版本作答。
 
+用户要先试成品，直接给[微信原生报名样板](assets/signup-demo/README.md)及可重跑命令，用独立样板的虚构数据体验。首次给出报名样板时即说明：同机重复报名可验，跨设备并发需共享后端另验。评审协议入口、长表单或列表返回时，优先用[交互正反例](references/native-field-guide.md)结合用户场景说明并实际验证。用户要复刻问答等业务，先对照[可移植问答模块](assets/qa-module/README.md)盘点宿主身份、存储和审核策略，换第二个宿主重跑验证。维护者比较技能版本时按[版本对照评测](references/skill-comparison.md)运行。
+
 用户拿现有页面来问「审美不行」「哪个更方便」或比较截图时，直接按 [页面设计评审](references/miniprogram-ui-adapter.md#页面设计评审) 看图给判断。新项目出 UI 方案、高保真原型和开发后看实页时也主动做这项评审。只评图时可直接答，无需重走项目启动流程。
 
 ## 第一次使用先配置自定义指令
