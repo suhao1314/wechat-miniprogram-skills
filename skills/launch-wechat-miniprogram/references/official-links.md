@@ -23,7 +23,7 @@
 - [按钮与手机号授权](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)
 - [发起微信支付 wx.requestPayment](https://developers.weixin.qq.com/miniprogram/dev/api/payment/wx.requestPayment.html)
 - [全局配置与 tabBar](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#tabBar)
-- [小程序备案操作指引（登录微信公众平台后查看）](https://mp.weixin.qq.com/)
+- [微信公众平台（登录小程序账号查看备案入口及材料）](https://mp.weixin.qq.com/)
 - [小程序协同工作和发布](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/release.html)
 - [小程序平台常见拒绝情形](https://developers.weixin.qq.com/miniprogram/product/reject.html)
 - [虚拟服务交易纠纷处理细则](https://developers.weixin.qq.com/miniprogram/product/jiaoyilei/xunifuwuxize9341.html)

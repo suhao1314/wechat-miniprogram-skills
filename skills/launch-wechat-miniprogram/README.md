@@ -43,9 +43,31 @@ flowchart LR
 
 用户选定后，先按原尺寸看图修正拥挤、信息层级、换行和触控布局，再打开修正版复核；原型确认并开发出可运行页面后，在获准使用的微信开发者工具中逐页走查真实小程序页面的主要任务与状态。没有实际查看/运行的步骤标为未验证。HTML 用于确认设计方向，不能替代微信实页验收。
 
-## 安装
+### 推荐：让 Agent 自动安装
 
-见[发布仓库的快速开始](https://github.com/suhao1314/wechat-miniprogram-skills#readme)。安装 skills/launch-wechat-miniprogram，需要自动截图时加装同级 skills/wechat-page-qa。新对话输入 `$launch-wechat-miniprogram` 开始。
+不需要手动复制文件。打开支持 Agent Skills 的 Codex、Claude Code 或其他 coding agent，把下面这段提示词直接发给它：
+
+```text
+请帮我安装这个 Agent Skill：
+https://github.com/suhao1314/wechat-miniprogram-skills
+
+请按以下要求执行：
+1. 优先使用你当前环境提供的 Skill 安装工具（例如 skill-installer）。
+2. 安装仓库内的 skills/launch-wechat-miniprogram 目录，它包含本版入口和配套指南。
+3. 安装到当前用户的 Skills 目录，不要放进我的业务项目目录。
+4. 安装后的入口应为 `<Skills目录>/launch-wechat-miniprogram/SKILL.md`，不要额外嵌套同名目录。
+5. 如果已经存在同名 Skill，先检查版本和来源；不要直接覆盖，先告诉我并等待确认。
+6. 安装后检查 `SKILL.md` 和 `agents/openai.yaml`，并在环境支持 Python 时运行仓库自带的校验脚本。
+7. 最后告诉我实际安装路径、校验结果，以及如何启用这个 Skill。
+```
+
+安装后可以直接描述眼前的事，例如“这是微信报名页，大家填到一半就走了，帮我看看”。支持自动选择技能的工具会结合对话和项目判断；需要指定入口时可输入：
+
+```text
+$launch-wechat-miniprogram
+```
+
+手动安装时，把仓库内的 `skills/launch-wechat-miniprogram` 整个目录放到当前工具的技能目录。自动选择方式取决于宿主。`agents/openai.yaml` 是 Codex 的可选界面元数据。
 
 ## 使用示例
 
@@ -129,7 +151,7 @@ python scripts/validate_miniprogram_artifacts.py <project-root>
 - [微信公众平台](https://mp.weixin.qq.com/)
 - [微信小程序设计指南](https://developers.weixin.qq.com/miniprogram/design/)
 - [微信开发者工具下载](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
-- [小程序备案操作指引（登录微信公众平台后查看）](https://mp.weixin.qq.com/)
+- [微信公众平台（登录小程序账号查看备案入口及材料）](https://mp.weixin.qq.com/)
 - [小程序平台常见拒绝情形](https://developers.weixin.qq.com/miniprogram/product/reject.html)
 - [用户隐私保护指引](https://developers.weixin.qq.com/miniprogram/dev/framework/user-privacy/)
 - [腾讯云开发 CloudBase](https://docs.cloudbase.net/)

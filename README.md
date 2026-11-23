@@ -3,7 +3,6 @@
 **只会说「我想做个小程序」，就可以开始。** 安装后用一句话启动，想法还模糊，AI 会接着问。它陪你画出第一版、在手机上跑起来、准备备案和提审。等第一批人用起来，再陪你看懂哪一步流失、谁愿意付钱、每一单到底能留下多少钱。
 
 ```text
-$launch-wechat-miniprogram
 我想做一个校园二手信息小程序。我不懂开发，也不知道能不能直接做交易。
 请先问我关键问题，告诉我主体、类目、备案和审核上可能卡在哪里。
 先给我一个低成本可上线的首版方案，再一步一步带我做完。
@@ -12,6 +11,10 @@ $launch-wechat-miniprogram
 它不会上来就丢给你一堆代码。它会先追问目标用户、首版边界、谁负责内容和运营，再把每一步翻译成你能听懂的话。你确认后，它再推进下一步。
 
 [**从一句话开始用**](#从这里开始) · [**打开可操作的验收演示**](https://suhao1314.github.io/wechat-miniprogram-skills/) · [**拿两张截图找页面问题**](https://suhao1314.github.io/wechat-miniprogram-skills/compare.html) · [下载 ZIP](https://github.com/suhao1314/wechat-miniprogram-skills/archive/refs/heads/main.zip)
+
+### 店员还需要电脑后台、官网或 H5？
+
+这不是让小程序硬塞一个“后台页”。当你说“商家想在电脑上看订单”“还想做官网”“要一个给客户看的链接”时，Skill 会主动把已确认的角色、数据状态和接口约定交给配套的 [网页、官网和管理后台 Skill](https://github.com/suhao1314/web-product-delivery)，再用同一条测试记录核对网页和小程序是否读到同一笔数据。只有需要云端存储或偶尔在手机里看名单时，它不会擅自建议新建网站。
 
 ## 先把一个小程序跑在微信里
 
@@ -94,14 +97,14 @@ flowchart LR
 装好后告诉我应该怎样在新对话中调用，并从我的想法开始提问。
 ```
 
-安装后，在新对话输入 `$launch-wechat-miniprogram`，再直接描述你想做的小程序。不同工具的安装目录和调用方式会不同，以工具当前说明为准。Skill 文件能被读取，不表示 AI 已经连接了你的微信账号、开发者工具或云环境。
+安装后，直接用日常的话描述你现在卡住的事，例如“我想做一个校园报名小程序”“商家还需要电脑后台”“这张页面图哪里不方便”“体验版怎么给客户演示”。它会按上下文进入需求、界面、开发、验收或配套网站的步骤，不要求背固定提示词。只有已安装的工具没有自动选中技能时，再输入 `$launch-wechat-miniprogram` 作为兜底。不同工具的安装目录和调用方式会不同，以工具当前说明为准。Skill 文件能被读取，不表示 AI 已经连接了你的微信账号、开发者工具或云环境。
 
 ### 手动安装
 
 1. 打开 [仓库页面](https://github.com/suhao1314/wechat-miniprogram-skills)，选择 **Code → Download ZIP**。
 2. 解压后，将 `skills/launch-wechat-miniprogram` 整个文件夹复制到你的 AI 工具支持的 Skills 目录。
 3. 需要自动拍摄模拟器页面时，再复制同级 `skills/wechat-page-qa` 文件夹。
-4. 新对话中调用 `$launch-wechat-miniprogram`。工具不支持这个写法时，让它读取 `launch-wechat-miniprogram/SKILL.md`。
+4. 新对话直接描述你的目标或当前页面问题。工具没有自动识别时，再调用 `$launch-wechat-miniprogram`；不支持这个写法时，让它读取 `launch-wechat-miniprogram/SKILL.md`。
 
 已有同名 Skill 时先比较版本和文件，不要直接覆盖。
 

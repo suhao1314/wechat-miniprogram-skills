@@ -20,6 +20,8 @@ jobs:
           node-version: '22'
       - working-directory: skills/launch-wechat-miniprogram/tools/visual-regression
         run: npm ci --ignore-scripts && npm test
+      - working-directory: skills/launch-wechat-miniprogram/tools/signup-property-tests
+        run: npm ci --ignore-scripts && npm test
 
       - run: python scripts/validate_miniprogram_artifacts.py assets/signup-demo
       - working-directory: skills/launch-wechat-miniprogram/assets/signup-demo

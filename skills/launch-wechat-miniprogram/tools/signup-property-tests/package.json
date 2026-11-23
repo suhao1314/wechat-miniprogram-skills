@@ -1,0 +1,10 @@
+{
+  "name": "signup-demo-property-tests",
+  "private": true,
+  "scripts": {
+    "test": "node --test signup.test.cjs"
+  },
+  "devDependencies": {
+    "fast-check": "4.3.0"
+  }
+}
